@@ -1,0 +1,51 @@
+[
+  {
+    "id": 159987,
+    "name": "Avi Agababa",
+    "phone": "1800888999",
+    "email": "agababa@hobo.com",
+    "role": "manager"
+  },
+  {
+    "id": 852985,
+    "name": "Ameriko Vespuchi",
+    "phone": "158654889",
+    "email": "amritser@hobo.com",
+    "role": "seller"
+  },
+  {
+    "id": "987456",
+    "name": "Mark Kirzhner",
+    "phone": "25865458",
+    "email": "momo@ho.com",
+    "role": "prophesier "
+  },
+  {
+    "id": "9587456",
+    "name": "Shimi Tavori",
+    "phone": "024565841",
+    "email": "shimi@momo.com",
+    "role": "customer "
+  },
+  {
+    "id": "555552222",
+    "name": "Sami Mami",
+    "phone": "0000000000000",
+    "email": "mami@momo.xyz",
+    "role": "cleaner"
+  },
+  {
+    "id": "555552222",
+    "name": "Sami Mami",
+    "phone": "0000000000000",
+    "email": "mami@momo.xyz",
+    "role": "cleaner"
+  },
+  {
+    "id": "4568456",
+    "name": "Bob Marcello",
+    "phone": "456879874",
+    "email": "hgg@vgj.jg",
+    "role": "cook"
+  }
+]
