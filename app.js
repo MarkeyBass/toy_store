@@ -21,5 +21,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-const PORT = '3000';
-app.listen(PORT, 'localhost', () => console.log(`Sever listening on port ${PORT}`))
+const PORT = '5000';
+app.listen(PORT, 'localhost', () => console.log(`Sever listening on port ${PORT}`));

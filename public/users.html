@@ -56,7 +56,7 @@
 
     function getUsers() {
       form.style.display = 'none'
-      fetch('http://localhost:3000/users/all-users')
+      fetch('http://localhost:5000/users/all-users')
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -86,7 +86,7 @@
         role: form.role.value,
       }
 
-      fetch('http://localhost:3000/users/add-user', {
+      fetch('http://localhost:5000/users/add-user', {
         method: "POST",
         headers: {
           'Accept': 'application/json, text/plain, */*',

@@ -1,39 +1,41 @@
 const path = require('path');
-const fs = require('fs');
+const { FileService } = require('../services/fileService');
 
-const sendUsersPage = (req, res) => {
-  res.sendFile(path.join(__dirname, '..','public', 'users.html'));
-};
+class UsersCont {
+  constructor () {
+    this.fileService = new FileService();
+  }
 
-// get all users
-const getAllUsers = (req, res) => {
-  fs.readFile(path.join(__dirname, '..','models', 'users.json'), 'utf-8',(err, data) => {
-    if(err) console.log(err);
-    console.log("data: ", data);
-    // res.setHeader("Access-Control-Allow-Origin","localhost:3000");
-    res.json(JSON.parse(data));
-  });
-};
+  sendUsersPage = (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, '..','public', 'users.html'));
+  };
 
-// post a user
-const addUser = (req, res) => {
-  console.log(req.body)
-  let dataArr = [];
-  fs.readFile(path.join(__dirname, '..','models', 'users.json'), 'utf-8' ,(err, data) => {
-    if(err) console.log(err);
-    console.log(data);
-    dataArr = JSON.parse(data);
-    dataArr.push(req.body);
-    console.log(dataArr);
-    
-    fs.writeFile(path.join(__dirname, '..','models', 'users.json'), JSON.stringify(dataArr) , (err, data) => {
-      if(err) console.log(err);
-    })
-  });
-};
+  getAllUsers = (req, res) => {
+    this.fileService.readFromFile(path.join(__dirname, '..','models', 'users.json'), (err, data) => {
+        if(err) {
+          console.log(err);
+          res.status(400).send(`<h1>Can't get the data: Status: 400</h1>`)
+        }
+        console.log('successfull GET req was made from USERS');
+        res.send(data);
+    });
+  };
 
-module.exports = {
-  sendUsersPage,
-  getAllUsers,
-  addUser
+  addUser = (req, res) => {
+    this.fileService.writeToJsonFile(path.join(__dirname, '..','models', 'users.json'), req.body, (err, msg) => {
+      if(err) {
+        console.log(err);
+        res.status(400).send(`<h1>Unable to post the data: Status: 400</h1>`)
+      } else {
+          res.status(200).json({
+          msg: "User added successfully...",
+          status: 200,
+        });
+      }
+    });
+  
+  };
 }
+
+
+module.exports = { usersCont: new UsersCont() };

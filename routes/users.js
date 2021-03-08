@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const userCont = require('../controllers/usersCont');
+const { usersCont } = require('../controllers/usersCont');
 
-router.get('/', userCont.sendUsersPage);
-router.get('/all-users', userCont.getAllUsers);
-router.post('/add-user', userCont.addUser);
+router.get('/', usersCont.sendUsersPage);
+router.get('/all-users', usersCont.getAllUsers);
+router.post('/add-user', usersCont.addUser);
 
 module.exports = router;
 

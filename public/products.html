@@ -56,7 +56,7 @@
 
     function getProducts() {
       form.style.display = 'none'
-      fetch('http://localhost:3000/products/all-products')
+      fetch('http://localhost:5000/products/all-products')
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -85,7 +85,7 @@
         img_url: form.img_url.value,
       }
 
-      fetch('http://localhost:3000/products/add-product', {
+      fetch('http://localhost:5000/products/add-product', {
         method: "POST",
         headers: {
           'Accept': 'application/json, text/plain, */*',
