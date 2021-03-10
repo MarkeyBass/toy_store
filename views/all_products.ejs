@@ -1,0 +1,29 @@
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+
+  <body>
+    <div class="container">
+
+      <%- include("partials/products_nav.ejs") %>
+
+      <div id="output" class="mt-4">
+
+        <% if( products.length > 0 ) { %>
+          <% products.forEach(( product ) => { %>
+            <div class="card card-body mb-3">
+              <h4>part_numbe: <%= product.part_number %></h4>
+              <p>description: <%= product.description %></p>
+              <p>qty: <%= product.qty %></p>
+              <p>price: <%= product.price %></p>
+              <p>img_url: <%= product.img_url %></p>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+
+    
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+
+  <body>
+    <div class="container">
+
+      <%- include("partials/users_nav.ejs") %>
+
+      <div id="output" class="mt-4">
+
+        <% if( users.length > 0 ) { %>
+          <% users.forEach(( user ) => { %>
+            <div class="card card-body mb-3">
+              <h4>name: <%= user.name %></h4>
+              <p>id: <%= user.id %></p>
+              <p>role: <%= user.role %></p>
+              <p>email: <%= user.email %></p>
+              <p>phone: <%= user.phone %></p>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+
+    
+
+    </div>
+
+  </body>
+</html>

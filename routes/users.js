@@ -3,8 +3,9 @@ const router = express.Router();
 const { usersCont } = require('../controllers/usersCont');
 
 router.get('/', usersCont.sendUsersPage);
-router.get('/all-users', usersCont.getAllUsers);
-router.post('/add-user', usersCont.addUser);
+router.get('/all_users', usersCont.getAllUsers);
+router.get('/show_user_form', usersCont.showUserForm);
+router.post('/', usersCont.addUser);
 
 module.exports = router;
 

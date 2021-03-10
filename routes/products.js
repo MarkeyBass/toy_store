@@ -3,7 +3,9 @@ const router = express.Router();
 const { productsCont } = require('../controllers/productsCont');
 
 router.get('/', productsCont.sendProductPage);
-router.get('/all-products', productsCont.getAllProducts);
-router.post('/add-product', productsCont.addProduct);
+router.get('/all_products', productsCont.getAllProducts);
+router.get('/show_product_form', productsCont.showProductForm);
+router.post('/', productsCont.addProduct);
+
 
 module.exports = router;

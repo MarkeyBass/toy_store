@@ -1,44 +1,53 @@
 const path = require('path');
-const { FileService } = require('../services/fileService');
+const { SqlService } = require('../services/sqlService');
 
 class ProductsCont {
-  constructor() {
-    this.fileService = new FileService();
+  constructor () {
+    this.sqlService = new SqlService();
   }
 
   sendProductPage = (req, res) => {
-    res.status(200).sendFile(path.join(__dirname,'..' ,'public', 'products.html'));
+    res.render("products", { title: "Products" })
   };
-  
+
   getAllProducts = (req, res) => {
-    this.fileService.readFromFile(path.join(__dirname, '..','models', 'products.json'), (err, data) => {
-      if(err) {
-        console.log(err);
-        res.status(400).send(`<h1>Can't get the data: Status: 400</h1>`);
-      } else {
-        console.log('successfull GET req was made from Products');
-        res.send(data);
-      }
+    this.sqlService.selectAllProducts((err, products) => {
+        if(err) {
+          console.log(err);
+          res.status(400).send(`<h1>Can't get products information: Status: 400</h1>`)
+        }
+        console.log('successfull GET req was made from PRODUCTS');
+        res.render('all_products', {
+          title: "Users",
+          products
+        });
     });
   };
-  
-  // post a product
+
+  showProductForm = (req, res) => {
+    console.log("hited /users/show_product_form rout")
+    res.render('show_product_form', { title: "Products" });
+  };
+
   addProduct = (req, res) => {
-    this.fileService.writeToJsonFile(path.join(__dirname, '..','models', 'products.json'), req.body, (err, data) => {
+    this.sqlService.addProduct(req.body, (err, msg) => {
       if(err) {
         console.log(err);
-        res.status(400).send(`<h1>Unable to post the data: Status: 400</h1>`);
+        res.status(400).send(`<h1>Unable to post PRODUCTS data: Status: 400</h1>`)
       } else {
-        res.status(200).json({
-          msg: "Product added successfully...",
-          status: 200,
-        });
+          res.redirect(301, "products/all_products")
+          // .json({
+          // msg: "PRODUCT added successfully...",
+          // status: 200,
+        // });
       }
+    });
   
-    })
-  }
+  };
 }
+
 
 module.exports = {
   productsCont: new ProductsCont()
 }
+
