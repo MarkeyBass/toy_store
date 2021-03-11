@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,5 +24,5 @@ app.use((req, res) => {
   res.status(404).render('404', { title: '404' });
 });
 
-const PORT = '5000';
-app.listen(PORT, 'localhost', () => console.log(`Sever listening on port ${PORT}`));
+const PORT = process.env.PORT || '5000';
+app.listen(PORT, process.env.HOST, () => console.log(`Sever listening on port ${PORT}`));

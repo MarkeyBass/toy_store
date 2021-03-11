@@ -1,12 +1,16 @@
 const mysql = require('mysql2');
-
+require('dotenv').config()
 class SqlService {
   constructor () {
     this.connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      database: "toy_store",
-      password: "HansaSpiti2008"
+      host: process.env.HOST,
+      user: process.env.DB_USER,
+      database: process.env.DB_DATABASE,
+      password: process.env.DB_PASS
+      // host: "localhost",
+      // user: "root",
+      // database: "toy_store",
+      // password: "HansaSpiti2008"
     });
 
     // USERS QUERIES
