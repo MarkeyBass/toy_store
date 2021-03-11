@@ -19,7 +19,8 @@ app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  // res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+  res.status(404).render('404', { title: '404' });
 });
 
 const PORT = '5000';
